@@ -43,7 +43,7 @@ lm_regbayes <- function(formula, data, approach=c("mle","bayes"), mu_beta=0, sig
   y <- model.response(mf)
   n <- length(y)
   p <- ncol(x)
-
+  labels <- colnames(x)
 
   if(approach=="mle"){
       fit <- mlereg(y=y, x=x, ...)

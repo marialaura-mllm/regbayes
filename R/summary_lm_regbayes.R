@@ -47,6 +47,7 @@ summary.lm_regbayes <- function(object, ...){
         StdErr = se,
         z.value = zval,
         p.value = 2*stats::pnorm(-abs(zval)))
+      rownames(TAB) <- labels
       res <- list(call=object$call,
         coefficients=TAB, residuals=resid, approach=object$approach)
       class(res) <- "summary.lm_regbayes"
@@ -57,6 +58,7 @@ summary.lm_regbayes <- function(object, ...){
       labels <- object$labels
       s <- rstan::summary(object$fit, pars=c("beta"))
       TAB <- round(s$summary, digits = 3)
+      rownames(TAB) <- labels
       n_kept <- object$fit@sim$n_save - object$fit@sim$warmup2
 
       res <- list(call=object$call, coefficients=TAB, n_kept=n_kept,
